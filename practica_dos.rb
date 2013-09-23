@@ -3,7 +3,11 @@ class PracticaDos
     #puts self.sum_all_multiples_3_5(999)
     #puts self.sum_all_even_terms(3999999)
     #puts self.palindrome_largest_mutiplicate_digit()
-    puts self.smalles_number_divisible_by(20)
+    #puts self.smalles_number_divisible_by(20)
+    #puts self.difference_between_square_sum_and_sum_squares(100)
+    #puts self.get_cousin_number_pos(10001)
+    #puts self.sum_cousin_less_than(2000000)
+    puts self.length_words_string("Este es un ejemplo")
   end
 
   def sum_all_multiples_3_5(limit_range)
@@ -50,6 +54,49 @@ class PracticaDos
     }
     ok
   end
+
+  def difference_between_square_sum_and_sum_squares(num)
+    self.square_sum(num) - self.sum_squares(num)
+  end
+  def square_sum(num)
+    (0..num).inject { |sum, element| sum+element }**2
+  end
+  def sum_squares(num)
+    (0..num).inject { |sum, element| sum+element**2 }
+  end
+
+  def get_cousin_number_pos(num)
+    require 'mathn'
+    pos = 0
+    i = 0
+    primes = Prime::instance
+    primes.each do |prime|
+      pos = prime
+      i = i+1
+      break if i == num
+    end
+    pos
+  end
+
+  def sum_cousin_less_than(num)
+    require 'mathn'
+    sum = 0
+    primes = Prime::instance
+    primes.each do |prime|
+      break if prime > num
+      sum = sum+prime
+    end
+    sum
+  end
+
+  def length_words_string(string)
+    result = []
+    string.downcase.scan(/[\w']+/).each do |item|
+      result << item.length
+    end
+    result
+  end
+
 end
 
 practica_dos = PracticaDos.new
