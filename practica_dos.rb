@@ -7,7 +7,19 @@ class PracticaDos
     #puts self.difference_between_square_sum_and_sum_squares(100)
     #puts self.get_cousin_number_pos(10001)
     #puts self.sum_cousin_less_than(2000000)
-    puts self.length_words_string("Este es un ejemplo")
+    #puts self.length_words_string("Este es un ejemplo")
+    #puts self.rgb_integer_representation({ red: 0, green: 128, blue: 255 })
+    #puts self.rgb_coefficient_representation({ red: 0, green: 128, blue: 255 })
+    @contacts = []
+    new_contact = {
+        name: 'Enuel',
+        birthday_date: '03/05/1989',
+        email: 'enuelmorales89@gmail.com',
+        phone: 486458,
+        address: '45 nº 546'
+    }
+    self.add_contact(new_contact)
+    puts self.list_contacts
   end
 
   def sum_all_multiples_3_5(limit_range)
@@ -97,6 +109,32 @@ class PracticaDos
     result
   end
 
+  def rgb_integer_representation(hash_rgb)
+    r = hash_rgb[:red]
+    g = hash_rgb[:green]*256
+    b = hash_rgb[:blue]*256**2
+    r+g+b
+  end
+  def rgb_coefficient_representation(hash_rgb)
+    r = hash_rgb[:red]**0
+    g = hash_rgb[:green]**1
+    b = hash_rgb[:blue]**2
+    hash_rgb = {red: r, green: g, blue: b}
+    self.rgb_integer_representation(hash_rgb)
+  end
+
+  def list_contacts
+    @contacts.each do |contact|
+      puts contact[:name]
+      puts contact[:birthday_date]
+      puts contact[:email]
+      puts contact[:phone]
+      puts contact[:address]
+    end
+  end
+  def add_contact(contact)
+     @contacts[@contacts.length] = contact
+  end
 end
 
 practica_dos = PracticaDos.new

@@ -41,6 +41,56 @@ class TestPracticaDos < Test::Unit::TestCase
     assert_equal([], practica_dos.length_words_string(''))
     assert_equal([4, 2, 2, 7], practica_dos.length_words_string('Este es un ejemplo'))
   end
+  def test_rgb_integer_representation(num)
+    practica_dos = PracticaDos.new
+    assert_equal(0, practica_dos.rgb_integer_representation({ red: 0, green: 0, blue: 0 }))
+    assert_equal(16744448, practica_dos.rgb_integer_representation({ red: 0, green: 128, blue: 255 }))
+  end
+  def test_rgb_coefficient_representation(num)
+    practica_dos = PracticaDos.new
+    assert_equal(0, practica_dos.rgb_coefficient_representation({ red: 0, green: 0, blue: 0 }))
+    assert_equal(4261511169, practica_dos.rgb_coefficient_representation({ red: 0, green: 128, blue: 255 }))
+  end
+  def test_list_contacts
+    practica_dos = PracticaDos.new
+    assert_equal(['Enuel', 'Morales'] ,practica_dos.list_contacts)
+  end
+  def test_add_contact
+    practica_dos = PracticaDos.new
+    cant_contacts = practica_dos.list_contacts.length
+    new_contact = {
+        name: 'Enuel',
+        birthday_date: '03/05/1989',
+        email: 'enuelmorales89@gmail.com',
+        phone: 486458,
+        address: '45 nº 546'
+    }
+    assert_equal(practica_dos.list_contacts.length > cant_contacts ,practica_dos.add_contact(new_contact))
+  end
+  def test_edit_contact
+    practica_dos = PracticaDos.new
+    cant_contacts = practica_dos.list_contacts.length
+    new_contact = {
+        name: 'Manuel',
+        birthday_date: '13/05/1989',
+        email: 'manuel89@gmail.com',
+        phone: 457051,
+        address: '56 nº 1240'
+    }
+    assert_equal(practica_dos.list_contacts.length == cant_contacts ,practica_dos.edit_contact(new_contact))
+  end
+  def search_edit_contact
+    practica_dos = PracticaDos.new
+    cant_contacts = practica_dos.list_contacts.length
+    contact = {
+        name: 'Manuel',
+        birthday_date: '13/05/1989',
+        email: 'manuel89@gmail.com',
+        phone: 457051,
+        address: '56 nº 1240'
+    }
+    assert_equal(true ,practica_dos.search_contact(contact))
+  end
 end
 
 
