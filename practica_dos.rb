@@ -11,15 +11,35 @@ class PracticaDos
     #puts self.rgb_integer_representation({ red: 0, green: 128, blue: 255 })
     #puts self.rgb_coefficient_representation({ red: 0, green: 128, blue: 255 })
     @contacts = []
-    new_contact = {
-        name: 'Enuel',
-        birthday_date: '03/05/1989',
-        email: 'enuelmorales89@gmail.com',
-        phone: 486458,
-        address: '45 nº 546'
-    }
-    self.add_contact(new_contact)
-    puts self.list_contacts
+    #new_contact = {
+    #    name: 'Enuel',
+    #    birthday_date: '03/05/1989',
+    #    email: 'enuelmorales89@gmail.com',
+    #    phone: 486458,
+    #    address: '45 nº 546'
+    #}
+    #self.add_contact(new_contact)
+    #puts self.list_contacts
+    #other_contact = {
+    #    name: 'Pedro',
+    #    birthday_date: '03/05/1989',
+    #    email: 'enuelmorales89@gmail.com',
+    #    phone: 486458,
+    #    address: '45 nº 546'
+    #}
+    #self.edit_contact(other_contact)
+    #puts self.list_contacts
+    #nothing_contact = {
+    #    name: 'Juan',
+    #    birthday_date: '03/05/1989',
+    #    email: 'juan@gmail.com',
+    #    phone: 486458,
+    #    address: '45 nº 546'
+    #}
+    #puts self.search_contact(nothing_contact)
+    #puts self.convert_meters_to_feets(10)
+    #puts self.convert_feets_to_meters(10)
+    puts self.create_file
   end
 
   def sum_all_multiples_3_5(limit_range)
@@ -125,15 +145,51 @@ class PracticaDos
 
   def list_contacts
     @contacts.each do |contact|
-      puts contact[:name]
-      puts contact[:birthday_date]
-      puts contact[:email]
-      puts contact[:phone]
-      puts contact[:address]
+      p contact[:name], contact[:birthday_date], contact[:email], contact[:phone], contact[:address]
     end
   end
   def add_contact(contact)
-     @contacts << contact
+    @contacts << contact
+  end
+  def edit_contact(contact)
+    @contacts.each_with_index do |element, index|
+      if contact[:email] == element[:email]
+        @contacts[index] = contact
+      end
+    end
+  end
+  def search_contact(contact)
+    result = nil
+    @contacts.each do |element|
+      result = (contact[:email] == element[:email])? contact : 'No se encuentra'
+      break
+    end
+    result
+  end
+  def get_contacts
+    @contacts
+  end
+
+  def convert_meters_to_feets(num_meter)
+    num_meter * 3.2808
+  end
+  def convert_feets_to_meters(num_feet)
+    num_feet / 3.2808
+  end
+
+  def create_file
+    lines = [
+      ['001','Caja de sorpresas',52.50],
+      ['002','Viaje de ida al infinito y mas allá',120],
+      ['003','Historias de chillar',75],
+      ['003','Pegamento de personas',80]
+    ]
+    f = File.open('ejercicio_12.txt', 'w') do |f|
+      lines.each do |line|
+        f.puts line.join(', ')
+      end
+    end
+    f.size
   end
 end
 

@@ -46,10 +46,10 @@ class TestPracticaDos < Test::Unit::TestCase
     assert_equal(4261511169, @practica_dos.rgb_coefficient_representation({ red: 0, green: 128, blue: 255 }))
   end
   def test_list_contacts
-    assert_equal(['Enuel', 'Morales'] ,@practica_dos.list_contacts)
+    assert_equal([] ,@practica_dos.list_contacts)
   end
   def test_add_contact
-    cant_contacts = @practica_dos.list_contacts.length
+    cant_contacts = @practica_dos.get_contacts.size
     new_contact = {
         name: 'Enuel',
         birthday_date: '03/05/1989',
@@ -57,10 +57,11 @@ class TestPracticaDos < Test::Unit::TestCase
         phone: 486458,
         address: '45 nº 546'
     }
-    assert_equal(@practica_dos.list_contacts.length > cant_contacts ,@practica_dos.add_contact(new_contact))
+    @practica_dos.add_contact(new_contact)
+    assert_not_equal(cant_contacts ,@practica_dos.get_contacts.size)
   end
   def test_edit_contact
-    cant_contacts = @practica_dos.list_contacts.length
+    cant_contacts = @practica_dos.get_contacts.size
     new_contact = {
         name: 'Manuel',
         birthday_date: '13/05/1989',
@@ -68,10 +69,10 @@ class TestPracticaDos < Test::Unit::TestCase
         phone: 457051,
         address: '56 nº 1240'
     }
-    assert_equal(@practica_dos.list_contacts.length == cant_contacts ,@practica_dos.edit_contact(new_contact))
+    @practica_dos.edit_contact(new_contact)
+    assert_equal(cant_contacts ,@practica_dos.get_contacts.size)
   end
-  def search_edit_contact
-    cant_contacts = @practica_dos.list_contacts.length
+  def test_search_contact
     contact = {
         name: 'Manuel',
         birthday_date: '13/05/1989',
@@ -79,7 +80,17 @@ class TestPracticaDos < Test::Unit::TestCase
         phone: 457051,
         address: '56 nº 1240'
     }
-    assert_equal(true ,@practica_dos.search_contact(contact))
+    @practica_dos.add_contact(contact)
+    assert_equal(contact ,@practica_dos.search_contact(contact))
+  end
+  def test_convert_meters_to_feets
+    assert_equal(32.808 ,@practica_dos.convert_meters_to_feets(10))
+  end
+  def test_convert_feets_to_meters
+    assert_equal(3.0480370641306997 ,@practica_dos.convert_feets_to_meters(10))
+  end
+  def test_create_file
+    assert_not_equal(0, @practica_dos.create_file)
   end
 end
 
