@@ -47,7 +47,7 @@ class PracticaDos
   end
 
   def smalles_number_divisible_by(num)
-    if (self.is_divisible_by_all_numbers(num) == true)
+    if (self.is_divisible_by_all_numbers(num))
       num
     else
       num = num+1
@@ -133,7 +133,7 @@ class PracticaDos
     end
   end
   def add_contact(contact)
-     @contacts[@contacts.length] = contact
+     @contacts << contact
   end
 end
 
