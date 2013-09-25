@@ -39,7 +39,7 @@ class PracticaDos
     #puts self.search_contact(nothing_contact)
     #puts self.convert_meters_to_feets(10)
     #puts self.convert_feets_to_meters(10)
-    puts self.create_file
+    puts self.create_file('products.txt')
   end
 
   def sum_all_multiples_3_5(limit_range)
@@ -177,14 +177,14 @@ class PracticaDos
     num_feet / 3.2808
   end
 
-  def create_file
+  def create_file(file)
     lines = [
       ['001','Caja de sorpresas',52.50],
       ['002','Viaje de ida al infinito y mas allá',120],
       ['003','Historias de chillar',75],
       ['003','Pegamento de personas',80]
     ]
-    f = File.open('ejercicio_12.txt', 'w') do |f|
+    f = File.open(file, 'w') do |f|
       lines.each do |line|
         f.puts line.join(', ')
       end
