@@ -16,6 +16,10 @@ class TestProductsList < Test::Unit::TestCase
     product[1] = 'Pegamento de personas'
     product[2] = 80
     @purchase.add(product)
-    assert_equal(1, @purchase.total)
+    assert_equal(80, @purchase.total)
+  end
+  def test_apply_discount
+    assert_equal(?, @purchase.total)
+    assert_equal(?, @purchase.apply_discount(10).total)
   end
 end
